@@ -6,6 +6,7 @@
 ### 1. 도메인 (Model)
 * **`Car` (자동차) 객체**
     * `Car`는 이름(String)과 위치(int)를 속성으로 가진다.
+    * 위치는 0으로 초기화한다.
     * 이름이 **5자 이하**인지 검증한다. (`IllegalArgumentException` 발생)
     * 이름이 **비어있거나 공백만으로 구성**되어 있는지 검증한다. (`IllegalArgumentException` 발생)
 * **`Cars` (자동차 일급 컬렉션) 객체**
