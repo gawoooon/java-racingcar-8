@@ -16,17 +16,12 @@ public class RacingCarGame {
     }
 
     public void run() {
-        try {
-            Cars cars = createCarsFromInput();
-            int roundCount = inputView.readRoundCount();
+        Cars cars = createCarsFromInput();
+        int roundCount = inputView.readRoundCount();
 
-            runGameRounds(cars, roundCount);
+        runGameRounds(cars, roundCount);
 
-            outputView.printFinalWinners(cars.getMaxNameList());
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        outputView.printFinalWinners(cars.getMaxNameList());
     }
 
     private Cars createCarsFromInput() {
