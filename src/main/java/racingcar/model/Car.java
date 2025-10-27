@@ -25,7 +25,7 @@ public class Car {
         }
 
         if (name.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_BLANK.getMessage(name));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_BLANK_NAME.getMessage(name));
         }
     }
 
