@@ -38,7 +38,7 @@ class CarTest {
     void blankName_ShouldThrowException() {
         assertThatThrownBy(() -> new Car("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_CAR_NAME_BLANK.getMessage("   "));
+                .hasMessage(ErrorMessage.INVALID_CAR_BLANK_NAME.getMessage("   "));
 
     }
 
