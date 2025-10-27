@@ -62,4 +62,8 @@ public class Cars {
         }
         return maxList;
     }
+
+    public List<Car> getCarList() {
+        return this.carList;
+    }
 }
