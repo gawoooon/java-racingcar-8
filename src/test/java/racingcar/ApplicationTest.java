@@ -26,6 +26,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 예외_테스트() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi,javaji", "1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
     void 기능_테스트_공동_우승() {
         assertRandomNumberInRangeTest(
                 () -> {
@@ -64,44 +72,24 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            run("pobi,javaji", "1");
-
-            assertThat(output()).contains(
-                    ErrorMessage.INVALID_CAR_NAME_LENGTH.getMessage("javaji")
-            );
-        });
-    }
-
-    @Test
     void 예외_테스트_시도횟수_숫자아님() {
-        assertSimpleTest(() -> {
-            // given
-            run("pobi,woni", "abc");
-
-            // then
-            assertThat(output()).contains(
-                    ErrorMessage.INVALID_ROUND_COUNT_NUMBER.getMessage("abc")
-            );
-        });
+        assertThatThrownBy(() -> runException("pobi,woni", "abc"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INVALID_ROUND_COUNT_NUMBER.getMessage("abc"));
     }
 
     @Test
-    void 예외_테스트_시도횟수_0이하() {
-        assertSimpleTest(() -> {
-            run("pobi,woni", "0");
-            assertThat(output()).contains(
-                    ErrorMessage.INVALID_ROUND_COUNT_POSITIVE.getMessage("0")
-            );
-        });
+    void 예외_테스트_시도횟수_0() {
+        assertThatThrownBy(() -> runException("pobi,woni", "0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INVALID_ROUND_COUNT_POSITIVE.getMessage("0"));
+    }
 
-        assertSimpleTest(() -> {
-            run("pobi,woni", "-1");
-            assertThat(output()).contains(
-                    ErrorMessage.INVALID_ROUND_COUNT_POSITIVE.getMessage("-1")
-            );
-        });
+    @Test
+    void 예외_테스트_시도횟수_음수() {
+        assertThatThrownBy(() -> runException("pobi,woni", "-1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INVALID_ROUND_COUNT_POSITIVE.getMessage("-1"));
     }
 
     @Override
